@@ -72,6 +72,8 @@ export default {
   },
   data() {
     return {
+      profix: '/api/product',
+      profixOfSupplier: '/api/supplier',
       classifyList: [
         { value: '电子产品', text: '电子产品' },
         { value: '办公用品', text: '办公用品' }
@@ -88,7 +90,7 @@ export default {
     },
     save(product) {
       this.$axios({
-        url: '/orm/product/saveProduct',
+        url: this.$data.profix + '/orm/product/saveProduct',
         method: 'post',
         data: product
       }).then(rep => {
@@ -109,7 +111,7 @@ export default {
     },
     remove(product) {
       if (!product.id || product.id === null || product.id === '') return
-      this.$axios.get('/orm/product/deleteProduct', {
+      this.$axios.get(this.$data.profix + '/orm/product/deleteProduct', {
         params: { id: product.id }
       }).then(rep => {
         this.$messager.alert({
@@ -128,7 +130,7 @@ export default {
       })
     },
     getSupplierList() {
-      this.$axios.get('/orm/supplier/listOfSuppliers').then(rep => {
+      this.$axios.get(this.$data.profixOfSupplier + '/orm/supplier/listOfSuppliers').then(rep => {
         for (var i = 0; i < rep.data.length; i++) {
           this.$data.supplierList[i] = {
             value: rep.data[i]['id'],

@@ -1,5 +1,2 @@
-FROM node
-ADD . /app
-WORKDIR /app
-RUN npm install
-ENTRYPOINT ["npm","run","dev"]
+FROM nginx
+ADD ./dist /app/

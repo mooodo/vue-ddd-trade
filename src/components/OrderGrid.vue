@@ -52,6 +52,7 @@ export default {
   },
   data() {
     return {
+      profix: '/api/order',
       total: null,
       data: [],
       page: 1,
@@ -91,7 +92,7 @@ export default {
     query() {
       var pageObj = { page: this.$data.page - 1, size: this.$data.pageSize, count: this.$data.total }
       var params = Object.assign(this.$data.params, pageObj)
-      this.$axios.post('/query/orderQry', params).then(rep => {
+      this.$axios.post(this.$data.profix + '/query/orderQry', params).then(rep => {
         this.$data.data = rep.data.data
         this.$data.total = (rep.data.count) ? rep.data.count : 1000
         this.$data.pageSize = (rep.data.size) ? rep.data.size : 20

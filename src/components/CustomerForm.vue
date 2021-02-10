@@ -68,6 +68,7 @@ export default {
   },
   data() {
     return {
+      profix: '/api/customer',
       sexes: [
         { value: '男', text: '男' },
         { value: '女', text: '女' }
@@ -83,7 +84,7 @@ export default {
     },
     save(customer) {
       this.$axios({
-        url: '/orm/customer/save',
+        url: this.$data.profix + '/orm/customer/save',
         method: 'post',
         data: customer
       }).then(rep => {
@@ -104,7 +105,7 @@ export default {
     },
     remove(customer) {
       if (!customer.id || customer.id === null || customer.id === '') return
-      this.$axios.get('/orm/customer/delete', {
+      this.$axios.get(this.$data.profix + '/customer/orm/customer/delete', {
         params: { id: customer.id }
       }).then(rep => {
         this.$messager.alert({
