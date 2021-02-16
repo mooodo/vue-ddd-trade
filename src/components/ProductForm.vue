@@ -2,7 +2,7 @@
   <div>
     <Dialog ref="d1"
         :title="'商品信息详情'"
-        :dialogStyle="{width:'500px',height:'440px'}"
+        :dialogStyle="{width:'380px',height:'440px'}"
         :modal="true"
         :draggable="true">
       <div style="margin-bottom: 10px;height: 85%;">

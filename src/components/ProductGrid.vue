@@ -5,7 +5,7 @@
         <div class="f-row">
           <div class="f-full" style="line-height:30px">产品信息查询</div>
           <LinkButton iconCls="icon-add" @click="add()" style="margin-right: 10px;">添加</LinkButton>
-          <SearchBox style="width:300px"
+          <SearchBox style="width:40%"
               placeholder="产品编号/产品名称"
               v-model="searchValue"
               @search="search($event)">
@@ -15,40 +15,32 @@
           </SearchBox>
         </div>
       </template>
-      <DataGrid :data="data" :multiSort="true" style="height:100%">
-        <GridColumnGroup :frozen="true" align="left" width="600px">
-          <GridHeaderRow>
-            <GridColumn field="id" title="产品编号" :sortable="true" :frozen="true"></GridColumn>
-            <GridColumn field="name" title="产品名称" :sortable="true" width="300px" :frozen="true">
-              <template slot="body" slot-scope="scope">
-                <u style="cursor: pointer" @click="edit(scope.row)">{{scope.row.name}}</u>
-              </template>
-            </GridColumn>
-            <GridColumn field="price" title="价格" align="right" :sortable="true" :frozen="true">
-              <template slot="body" slot-scope="scope">
-                {{number_format(scope.row.price,2,".",",")}}
-              </template>
-            </GridColumn>
-            <GridColumn field="originalPrice" title="原始价格" align="right" :sortable="true" :frozen="true">
-              <template slot="body" slot-scope="scope">
-                {{number_format(scope.row.originalPrice,2,".",",")}}
-              </template>
-            </GridColumn>
-          </GridHeaderRow>
-        </GridColumnGroup>
-        <GridColumnGroup  width="600px">
-          <GridHeaderRow>
-            <GridColumn field="unit" title="单位" align="center" width="50px"></GridColumn>
-            <GridColumn field="classify" title="分类" width="100px"></GridColumn>
-            <GridColumn field="supplier.name" title="供应商" width="200px">
-              <template slot="body" slot-scope="scope">
-                {{scope.row.supplier.name}}
-              </template>
-            </GridColumn>
-            <GridColumn field="image" title="图片" width="200px"></GridColumn>
-            <GridColumn field="tip" title="提示" align="center" width="50px"></GridColumn>
-          </GridHeaderRow>
-        </GridColumnGroup>
+      <DataGrid :data="data" :multiSort="true" style="height: 100%;min-width: 400px;">
+        <GridColumn field="id" title="产品编号" :sortable="true" width="100px"></GridColumn>
+        <GridColumn field="name" title="产品名称" :sortable="true" width="300px">
+          <template slot="body" slot-scope="scope">
+            <u style="cursor: pointer" @click="edit(scope.row)">{{scope.row.name}}</u>
+          </template>
+        </GridColumn>
+        <GridColumn field="price" title="价格" align="right" :sortable="true" width="100px">
+          <template slot="body" slot-scope="scope">
+            {{number_format(scope.row.price,2,".",",")}}
+          </template>
+        </GridColumn>
+        <GridColumn field="originalPrice" title="原始价格" align="right" :sortable="true" width="100px">
+          <template slot="body" slot-scope="scope">
+            {{number_format(scope.row.originalPrice,2,".",",")}}
+          </template>
+        </GridColumn>
+        <GridColumn field="unit" title="单位" align="center" width="50px"></GridColumn>
+        <GridColumn field="classify" title="分类" width="100px"></GridColumn>
+        <GridColumn field="supplier.name" title="供应商" width="200px">
+          <template slot="body" slot-scope="scope">
+            {{scope.row.supplier.name}}
+          </template>
+        </GridColumn>
+        <GridColumn field="image" title="图片" width="200px"></GridColumn>
+        <GridColumn field="tip" title="提示" align="center" width="50px"></GridColumn>
       </DataGrid>
       <template slot="footer">
         <Pagination :total="total" :pageSize="pageSize" :pageNumber="page" :layout="pageLayout"

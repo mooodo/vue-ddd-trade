@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="text-align: right;">
-      <SearchBox style="width:400px;margin-right: 30px;" placeholder="商品名称"
+      <SearchBox style="width:50%;margin-right: 30px;" placeholder="商品名称"
           v-model="searchValue" @search="search($event)">
         <Addon>
           <span v-if="searchValue" class="textbox-icon icon-clear" title="清除" @click="searchValue=null"></span>

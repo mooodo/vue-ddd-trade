@@ -6,22 +6,22 @@
           <div class="f-full" style="line-height:30px">订单信息跟踪</div>
         </div>
       </template>
-      <DataGrid :data="data" :multiSort="true" style="height:100%">
+      <DataGrid :data="data" :multiSort="true" style="height: 100%;min-width: 400px;">
         <GridColumn :expander="true" width="30"></GridColumn>
-        <GridColumn field="id" title="订单编号" :sortable="true"></GridColumn>
-        <GridColumn field="customer.name" title="用户" :sortable="true">
+        <GridColumn field="id" title="订单编号" :sortable="true" width="100px"></GridColumn>
+        <GridColumn field="customer.name" title="用户" :sortable="true" width="100px">
           <template slot="body" slot-scope="scope">
             <u style="cursor: pointer" @click="edit(scope.row)">{{scope.row.customer.name}}</u>
           </template>
         </GridColumn>
-        <GridColumn field="amount" title="金额" align="right" :sortable="true">
+        <GridColumn field="amount" title="金额" align="right" :sortable="true" width="100px">
           <template slot="body" slot-scope="scope">
             {{number_format(scope.row.amount,2,".",",")}}
           </template>
         </GridColumn>
-        <GridColumn field="orderTime" title="下单时间" align="center" :sortable="true" width="20%"></GridColumn>
-        <GridColumn field="flag" title="状态" align="center" width="10%"></GridColumn>
-        <GridColumn field="address.address" title="配送地址" width="30%">
+        <GridColumn field="orderTime" title="下单时间" align="center" :sortable="true" width="150px"></GridColumn>
+        <GridColumn field="flag" title="状态" align="center" width="100px"></GridColumn>
+        <GridColumn field="address.address" title="配送地址" width="300px">
           <template slot="body" slot-scope="scope">
             {{scope.row.address.address}}
           </template>

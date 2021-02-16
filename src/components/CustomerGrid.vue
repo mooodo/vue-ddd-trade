@@ -5,7 +5,7 @@
         <div class="f-row">
           <div class="f-full" style="line-height:30px">用户档案查询</div>
           <LinkButton iconCls="icon-add" @click="add()" style="margin-right: 10px;">添加</LinkButton>
-          <SearchBox style="width:300px"
+          <SearchBox style="width:40%"
               placeholder="用户编号/姓名"
               v-model="searchValue"
               @search="search($event)">
@@ -15,17 +15,21 @@
           </SearchBox>
         </div>
       </template>
-      <DataGrid :data="data" :multiSort="true" style="height:100%">
-        <GridColumn field="id" title="用户编号" :sortable="true"></GridColumn>
-        <GridColumn field="name" title="姓名" :sortable="true">
-          <template slot="body" slot-scope="scope">
-            <u style="cursor: pointer" @click="edit(scope.row)">{{scope.row.name}}</u>
-          </template>
-        </GridColumn>
-        <GridColumn field="sex" title="性别" align="center" :sortable="true"></GridColumn>
-        <GridColumn field="birthday" title="出生日期" align="center" :sortable="true"></GridColumn>
-        <GridColumn field="identification" title="身份证" align="right"></GridColumn>
-        <GridColumn field="phoneNumber" title="电话号码" align="right"></GridColumn>
+      <DataGrid :data="data" :multiSort="true" style="height: 100%;min-width: 400px;">
+        <GridColumnGroup :frozen="true" align="left" width="200px">
+          <GridHeaderRow>
+            <GridColumn field="id" title="用户编号" :sortable="true"></GridColumn>
+            <GridColumn field="name" title="姓名" :sortable="true">
+              <template slot="body" slot-scope="scope">
+                <u style="cursor: pointer" @click="edit(scope.row)">{{scope.row.name}}</u>
+              </template>
+            </GridColumn>
+          </GridHeaderRow>
+        </GridColumnGroup>
+        <GridColumn field="sex" title="性别" align="center" width="50px"></GridColumn>
+        <GridColumn field="birthday" title="出生日期" align="center" width="150px"></GridColumn>
+        <GridColumn field="identification" title="身份证" align="right" width="150px"></GridColumn>
+        <GridColumn field="phoneNumber" title="电话号码" align="right" width="100px"></GridColumn>
       </DataGrid>
       <template slot="footer">
         <Pagination :total="total" :pageSize="pageSize" :pageNumber="page" :layout="pageLayout"

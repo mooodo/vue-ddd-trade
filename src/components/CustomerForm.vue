@@ -2,7 +2,7 @@
   <div>
     <Dialog ref="d1"
         :title="'用户档案详情'"
-        :dialogStyle="{width:'500px',height:'380px'}"
+        :dialogStyle="{width:'390px',height:'380px'}"
         :modal="true"
         :draggable="true">
       <div style="margin-bottom: 10px;height: 85%;">
