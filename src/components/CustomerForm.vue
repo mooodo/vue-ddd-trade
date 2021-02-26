@@ -40,10 +40,26 @@
           <TabPanel :title="'用户地址'" style="height: 254px;">
             <DataGrid :data="customer.addresses" style="height: 100%;width: 700px;"
               :clickToEdit="true" selectionMode="cell" editMode="cell">
-              <GridColumn field="country" title="国家" :editable="true"></GridColumn>
-              <GridColumn field="province" title="省份" :editable="true"></GridColumn>
-              <GridColumn field="city" title="地市" :editable="true"></GridColumn>
-              <GridColumn field="zone" title="乡镇" :editable="true"></GridColumn>
+              <GridColumn field="country.name" title="国家" :editable="true">
+                <template slot="body" slot-scope="scope">
+                  {{scope.row.country.name}}
+                </template>
+              </GridColumn>
+              <GridColumn field="province.name" title="省份" :editable="true">
+                <template slot="body" slot-scope="scope">
+                  {{scope.row.province.name}}
+                </template>
+              </GridColumn>
+              <GridColumn field="city.name" title="地市" :editable="true">
+                <template slot="body" slot-scope="scope">
+                  {{scope.row.city.name}}
+                </template>
+              </GridColumn>
+              <GridColumn field="zone.name" title="乡镇" :editable="true">
+                <template slot="body" slot-scope="scope">
+                  {{scope.row.zone.name}}
+                </template>
+              </GridColumn>
               <GridColumn field="address" title="街道" :editable="true" width="300px"></GridColumn>
               <GridColumn field="phoneNumber" title="电话" :editable="true" width="100px"></GridColumn>
             </DataGrid>

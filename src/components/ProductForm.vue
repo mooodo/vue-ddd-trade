@@ -13,7 +13,7 @@
           </div>
           <div class="form-item">
             <Label for="classify" align="top">分类：</Label>
-            <ComboBox inputId="classify" :data="classifyList" v-model="product.classify"
+            <ComboBox inputId="classify" :data="classifyList" v-model="product.classifyId"
              :editable="false" :panelStyle="{height:'auto'}">
             </ComboBox>
           </div>
@@ -74,10 +74,7 @@ export default {
     return {
       profix: '/api/product',
       profixOfSupplier: '/api/supplier',
-      classifyList: [
-        { value: '电子产品', text: '电子产品' },
-        { value: '办公用品', text: '办公用品' }
-      ],
+      classifyList: [],
       supplierList: []
     }
   },

@@ -33,7 +33,11 @@
           </template>
         </GridColumn>
         <GridColumn field="unit" title="单位" align="center" width="50px"></GridColumn>
-        <GridColumn field="classify" title="分类" width="100px"></GridColumn>
+        <GridColumn field="classify.name" title="分类" width="100px">
+          <template slot="body" slot-scope="scope">
+            {{scope.row.classify.name}}
+          </template>
+        </GridColumn>
         <GridColumn field="supplier.name" title="供应商" width="200px">
           <template slot="body" slot-scope="scope">
             {{scope.row.supplier.name}}

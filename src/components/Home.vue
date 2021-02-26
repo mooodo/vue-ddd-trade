@@ -17,7 +17,7 @@
         <div class="uni-product-price">
           <div class="uni-product-price-favour">￥{{product.originalPrice}}</div>
           <div class="uni-product-price-original">￥{{product.price}}</div>
-          <div class="uni-product-tip">{{product.tip}}</div>
+          <div class="uni-product-tip" v-if="product.tip">{{product.tip}}</div>
         </div>
       </div>
     </div>
