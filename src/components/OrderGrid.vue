@@ -128,8 +128,8 @@ export default {
       this.$data.customer = {
         id: row.customer.id.toString(),
         name: row.customer.name,
-        sex: row.customer.sex,
-        birthday: new Date(row.customer.birthday),
+        gender: row.customer.gender,
+        birthdate: new Date(row.customer.birthdate),
         identification: row.customer.identification,
         phoneNumber: row.customer.phoneNumber,
         addresses: row.customer.addresses

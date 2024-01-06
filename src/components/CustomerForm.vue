@@ -18,14 +18,14 @@
                 <TextBox inputId="name" v-model="customer.name" iconCls="icon-man"></TextBox>
               </div>
               <div class="form-item">
-                <Label for="sex" align="top">性别：</Label>
-                <ComboBox inputId="sex" :data="sexes" v-model="customer.sex"
+                <Label for="gender" align="top">性别：</Label>
+                <ComboBox inputId="gender" :data="genders" v-model="customer.gender"
                  :editable="false" :panelStyle="{height:'auto'}">
                 </ComboBox>
               </div>
               <div class="form-item">
-                <Label for="birthday" align="top">出生日期：</Label>
-                <DateBox inputId="birthday" v-model="customer.birthday" format="yyyy-MM-dd"></DateBox>
+                <Label for="birthdate" align="top">出生日期：</Label>
+                <DateBox inputId="birthdate" v-model="customer.birthdate" format="yyyy-MM-dd"></DateBox>
               </div>
               <div class="form-item">
                 <Label for="identification" align="top">身份证：</Label>
@@ -85,7 +85,7 @@ export default {
   data() {
     return {
       profix: '/api/customer',
-      sexes: [
+      genders: [
         { value: '男', text: '男' },
         { value: '女', text: '女' }
       ]
@@ -122,7 +122,7 @@ export default {
     remove(customer) {
       if (!customer.id || customer.id === null || customer.id === '') return
       this.$axios.get(this.$data.profix + '/customer/orm/customer/delete', {
-        params: { id: customer.id }
+        params: { customerId: customer.id }
       }).then(rep => {
         this.$messager.alert({
           title: 'Delete',

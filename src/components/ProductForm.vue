@@ -64,6 +64,7 @@
 export default {
   mounted: function() {
     this.getSupplierList()
+    this.getClassifyList()
   },
   props: {
     product: {
@@ -73,7 +74,7 @@ export default {
   data() {
     return {
       profix: '/api/product',
-      profixOfSupplier: '/api/supplier',
+      profixOfSupplier: '/api/product',
       classifyList: [],
       supplierList: []
     }
@@ -127,7 +128,7 @@ export default {
       })
     },
     getSupplierList() {
-      this.$axios.get(this.$data.profixOfSupplier + '/orm/supplier/listOfSuppliers').then(rep => {
+      this.$axios.get(this.$data.profixOfSupplier + '/orm/supplier/getAll').then(rep => {
         for (var i = 0; i < rep.data.length; i++) {
           this.$data.supplierList[i] = {
             value: rep.data[i]['id'],
@@ -139,6 +140,23 @@ export default {
           title: 'Error',
           icon: 'error',
           msg: '供应商查询失败！'
+        })
+        console.info(err)
+      })
+    },
+    getClassifyList() {
+      this.$axios.get(this.$data.profix + '/orm/classify/getAll').then(rep => {
+        for (var i = 0; i < rep.data.length; i++) {
+          this.$data.classifyList[i] = {
+            value: rep.data[i]['id'],
+            text: rep.data[i]['name']
+          }
+        }
+      }).catch(err => {
+        this.$messager.alert({
+          title: 'Error',
+          icon: 'error',
+          msg: '分类查询失败！'
         })
         console.info(err)
       })

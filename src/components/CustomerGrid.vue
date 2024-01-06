@@ -26,8 +26,8 @@
             </GridColumn>
           </GridHeaderRow>
         </GridColumnGroup>
-        <GridColumn field="sex" title="性别" align="center" width="50px"></GridColumn>
-        <GridColumn field="birthday" title="出生日期" align="center" width="150px"></GridColumn>
+        <GridColumn field="gender" title="性别" align="center" width="50px"></GridColumn>
+        <GridColumn field="birthdate" title="出生日期" align="center" width="150px"></GridColumn>
         <GridColumn field="identification" title="身份证" align="right" width="150px"></GridColumn>
         <GridColumn field="phoneNumber" title="电话号码" align="right" width="100px"></GridColumn>
       </DataGrid>
@@ -104,8 +104,8 @@ export default {
       this.$data.customer = {
         id: null,
         name: null,
-        sex: null,
-        birthday: null,
+        gender: null,
+        birthdate: null,
         identification: null,
         phoneNumber: null
       }
@@ -115,8 +115,8 @@ export default {
       this.$data.customer = {
         id: row.id.toString(),
         name: row.name,
-        sex: row.sex,
-        birthday: new Date(row.birthday),
+        gender: row.gender,
+        birthdate: new Date(row.birthdate),
         identification: row.identification,
         phoneNumber: row.phoneNumber,
         addresses: row.addresses
