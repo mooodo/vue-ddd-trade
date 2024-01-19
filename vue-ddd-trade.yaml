@@ -19,7 +19,7 @@ data:
       location /api {
         add_header 'Access-Control-Allow-Origin' '*';
         rewrite /api/(.*) /$1 break;
-        proxy_pass http://demo-service-zuul:9008;
+        proxy_pass http://edev-trade-gateway:9009;
       }
 
       error_page   500 502 503 504  /50x.html;
@@ -46,10 +46,27 @@ spec:
       labels:
         app: vue-ddd-trade
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - vue-ddd-trade
+              topologyKey: "kubernetes.io/hostname"
       containers:
       - name: vue-ddd-trade
         image: repository:5000/vue-ddd-trade
         imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1000Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
         volumeMounts:
         - name: config
           mountPath: /etc/nginx/conf.d/default.conf
@@ -75,3 +92,23 @@ spec:
     targetPort: 80
   selector:
     app: vue-ddd-trade
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-edev-vue
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: vue
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vue-ddd-trade
+                port:
+                  number: 80
